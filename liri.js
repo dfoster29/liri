@@ -1,5 +1,6 @@
 require("dotenv").config();
 
+var keys = require("./keys");
 //-----------------------------------------
 // spotify 
 
@@ -21,10 +22,31 @@ console.log(data);
 
 
 var request = require('request');
-request('http://www.google.com', function (error, response, body) {
+request("http://www.omdbapi.com/?t=" + movie +  "apikey=" + keys.omdb, function (error, response, body) {
   console.log('error:', error); // Print the error if one occurred
-  console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
-  console.log('body:', body); // Print the HTML for the Google homepage.
+
+  if (!error && response.statusCode === 200) {
+    
+    var title = JSON.parse(body).Title;
+    var date = JSON.parse(body).Released;
+    var imdbRating = JSON.parse(body).imdbRating;
+    var rtRating = JSON.parse(body).Ratings[1];
+    var country = JSON.parse(body).Country;
+    var language = JSON.parse(body).Language;
+    var plot = JSON.parse(body).Plot;
+    var actors = JSON.parse(body).Actors;
+
+    console.log(
+      "Movie Title: " + title +
+      "\nRelease Date: " + date +
+      "\nIMDB Rating: " + imdbRating + 
+      "\nRotten Tomatoes Rating: " + rtRating + 
+      "\nCountry of Origin: " + country + 
+      "\nLanguage: " + language + 
+      "\nPlot: " + plot + 
+      "\nActors: " + actors + 
+    )
+  }
 });
 
 
@@ -34,12 +56,7 @@ request('http://www.google.com', function (error, response, body) {
 
 var Twitter = require('twitter');
  
-var client = new Twitter({
-  consumer_key: process.env.TWITTER_CONSUMER_KEY,
-  consumer_secret: process.env.TWITTER_CONSUMER_SECRET,
-  access_token_key: process.env.TWITTER_ACCESS_TOKEN_KEY,
-  access_token_secret: process.env.TWITTER_ACCESS_TOKEN_SECRET
-});
+var client = new Twitter(keys.twitter);
  
 var params = {screen_name: 'nodejs'};
 client.get('statuses/user_timeline', params, function(error, tweets, response) {
