@@ -122,7 +122,19 @@ if (process.argv[2] === "spotify-this-song") {
 
   var client = new Twitter(keys.twitter);
 
-  var params = { screen_name: "RogueNASA" };
+  var nodeArgs = process.argv;
+
+  var accountName = "";
+
+  for (var i = 3; i < nodeArgs.length; i++) {
+    if (i > 3 && i < nodeArgs.length) {
+      accountName = accountName + "+" + nodeArgs[i];
+    } else {
+      accountName += nodeArgs[i];
+    }
+  };
+
+  var params = { screen_name: accountName };
   client.get("statuses/user_timeline", params, function(
     error,
     tweets,

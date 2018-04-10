@@ -6,7 +6,7 @@ With the OMDB API it will return information about a given movie such as title, 
 
 The Spotify API will display information about a given track such as the artist, album, and a preview mp3 link.
 
-the Twitter API will return tweets for a set twitter account.
+the Twitter API will return a tweet and the time it was created for a set twitter account.
 
 
 
@@ -19,4 +19,4 @@ Spotify:
 node liri.js spotify-this-song "song title here"
 
 Twitter:
-node liri.js my-tweets
+node liri.js my-tweets "account name here"
