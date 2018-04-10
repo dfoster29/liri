@@ -1,8 +1,6 @@
-
 require("dotenv").config();
 
 var keys = require("./keys");
-
 
 //-----------------------------------------
 // spotify
@@ -35,20 +33,22 @@ if (process.argv[2] === "spotify-this-song") {
 
       console.log("===========================================");
 
-      console.log("Artist: " + artist + 
-      "\nSong: " + songName + 
-      "\nPreview Link: " + preview +
-      "\nAlbum: " + album);
+      console.log(
+        "Artist: " +
+          artist +
+          "\nSong: " +
+          songName +
+          "\nPreview Link: " +
+          preview +
+          "\nAlbum: " +
+          album
+      );
 
       console.log("===========================================");
 
       // console.log(JSON.stringify(data, null, 2));
-
     }
-
-    
   });
-
 } else if (process.argv[2] === "movie-this") {
   //-----------------------------------------
   // require
@@ -114,10 +114,7 @@ if (process.argv[2] === "spotify-this-song") {
       }
     }
   );
-
-
 } else if (process.argv[2] === "my-tweets") {
-
   //-----------------------------------------
   // twitter
 
@@ -134,16 +131,21 @@ if (process.argv[2] === "spotify-this-song") {
     if (!error) {
       console.log("===========================================");
 
-      var myTweets = JSON.parse(tweets[0]).text;
+      // console.log(JSON.stringify(tweets, null, 2));
 
-      console.log(JSON.stringify(myTweets, null, 2));
+      console.log("===========================================");
+
+      console.log(
+        "Tweet: " + tweets[1].text + "\nCreated at: " + tweets[1].created_at
+      );
+
+      console.log("===========================================");
     }
   });
 }
 
 //-----------------------------------------
 // do what it says
-if (process.argv[2] === "do-what-it-says") {
+else if (process.argv[2] === "do-what-it-says") {
 
 }
-
